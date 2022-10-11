@@ -9,7 +9,87 @@
     <title>Document</title>
 </head>
 <body>
-    <div class = "container bg-light mt-5 rounded-3 shadow">
+    <div class = "container bg-light p-4 mt-5 rounded-3 shadow">
+        <div class="row">
+            <div class="col-12">
+                <h1 class ="text-center">10/7/22</h1>
+                <h4 class ="text-center">The beginnings of a technical article(How to refactor code from the perspective of a beginner)</h4>
+                <p>Every programmer knows how to code. From someone in the middle of bootcamp, to the lowest jr developer, to the highest sr dev on the team. Good code is what fuels the industry. But how does one write good code? Often times the code a beginner writes is functional, but not production level. In this article i will attempt to explain how to refactor your code from the perspective of someone who is nearly a complete beginner.</p>
+                <h5 class="text-center">Functional code is king</h5>
+                <p>Before even beginning to speak about refactoring, we need to get one thing straight. Functional code is king. If there is a specific way that you <em>KNOW</em> how to solve a problem brought up in your project, then use that solution first. When you are taking part of a bootcamp, you are typically on a tight schedule. Sometimes you just need to get the logic or design working within a time crunch. In this case, it is better to have working code than no code. An instructor can guide you into how to refactor your code into a better, more succinct solution. As a student in a bootcamp especially, you will be on tight deadline to get a presentable project. Having a working project when it is time to present is much more important. After your personal demo day, thats when the refactoring can begin. </p>
+                <h5 class="text-center">Begin Small</h5>
+                <p>When beginning to refactor, you need to think small. often times there is obvious WET code within your project that you already know how to fix, just ran out of time before the deadline hit. Starting with something that you know how to fix is the best possible starting point you can have. I will give a simple example from my own code that was an easy fix, i just couldnt refactor it before the deadline. Using good, better, and best practices as a framework, this refactor is probably in the better catagory. While it still isnt perfect, it is better than the original code i produced.</p>
+                <p>This was from a project where we built Tic-Tac-Toe. when setting up the eventListeners for the individual divs, I just threw them out in the open in order to set up all the 9 seperate divs with 'click' event listeners</p>
+                <pre><code>
+document.getElementById('0').addEventListener('click', playerMove)
+document.getElementById('1').addEventListener('click', playerMove)
+document.getElementById('2').addEventListener('click', playerMove)
+document.getElementById('3').addEventListener('click', playerMove)
+document.getElementById('4').addEventListener('click', playerMove)
+document.getElementById('5').addEventListener('click', playerMove)
+document.getElementById('6').addEventListener('click', playerMove)
+document.getElementById('7').addEventListener('click', playerMove)
+document.getElementById('8').addEventListener('click', playerMove)
+                </code></pre>
+                <p>I used this method again when players wanted to reset the game (as well as some other examples of WET code that have also been refactored</p>
+                <pre><code>
+function resetButton () {
+    gameState = [
+        '', '', '',
+        '', '', '',
+        '','','']
+
+    playerTurn = 0
+    playerLetter = 'X'
+    turnCount = 0
+    document.getElementById('0').innerHTML = ''
+    document.getElementById('1').innerHTML = ''
+    document.getElementById('2').innerHTML = ''
+    document.getElementById('3').innerHTML = ''
+    document.getElementById('4').innerHTML = ''
+    document.getElementById('5').innerHTML = ''
+    document.getElementById('6').innerHTML = ''
+    document.getElementById('7').innerHTML = ''
+    document.getElementById('8').innerHTML = ''
+    document.getElementById("target").innerHTML='X starts first'
+    document.getElementById('0').addEventListener('click', playerMove)
+    document.getElementById('1').addEventListener('click', playerMove)
+    document.getElementById('2').addEventListener('click', playerMove)
+    document.getElementById('3').addEventListener('click', playerMove)
+    document.getElementById('4').addEventListener('click', playerMove)
+    document.getElementById('5').addEventListener('click', playerMove)
+    document.getElementById('6').addEventListener('click', playerMove)
+    document.getElementById('7').addEventListener('click', playerMove)
+    document.getElementById('8').addEventListener('click', playerMove)
+}
+                </code></pre>
+                <p>First of all, this code does work. In the timeframe we had to complete this project, I <em>KNEW</em> that this solution would work. I understood loops and how they function, but i wanted to have a working product that I could get that i knew would not produce any bugs. This would more than likely be in the good catagory. Its not very pretty code, but it did what it needed to while i was testing.</p>
+                <p>Next is how I changed it up. Once again, I already knew how to rewrite this block using loops and functions, so refactoring wasnt very time consuming, and it was the first objective I tackled.</p>
+                <pre><code>
+function addListeners () {
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(i).addEventListener('click', playerMove)
+    }
+}
+addListeners();
+
+function removeListners () {
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(i).removeEventListener('click', playerMove)
+    }
+}
+
+function makeBlank () {
+    for (let i = 0; i < 9; i++) {
+    document.getElementById(i).innerHTML = ''
+    }
+}
+                </code></pre>
+                <p>So i took the code I wrote earlier, and changed it into a more brief solution. The code is significantly dryer than it was before. I repeat myself less, while still outputting the same result. I took my initial solution, and made it <em>better</em>. Still may not be best, but I was able to take criticism given to me during our demonstrations, and utilize it to write better code. The culmination of this being that i can call these functions wherever i want, and they will accomplish the same task without having to repeat the same 9 lines of code over again. However, its good to note that these solutions both accomplish the same result. </p>
+            </div>
+        </div>
+    </div>
+    <div class = "container bg-light mt-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12">
                 <h1 class ="text-center">9/30/22</h1>
@@ -25,7 +105,7 @@
             </div>
         </div>
     </div>
-    <div class = "container bg-light mt-5 rounded-3 shadow">
+    <div class = "container bg-light mt-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12 ">
                 <h1 class ="text-center">9/25/22</h1>
@@ -40,7 +120,7 @@
             </div>
         </div>
     </div>
-    <div class = "container bg-light mt-5 rounded-3 shadow">
+    <div class = "container bg-light mt-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12 ">
                 <h1 class ="text-center">9/16/22</h1>
@@ -54,7 +134,7 @@
             </div>
         </div>
     </div>
-    <div class = "container bg-light mt-5 rounded-3 shadow">
+    <div class = "container bg-light mt-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12 ">
                 <h1 class ="text-center">9/9/22</h1>
@@ -68,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div class = "container bg-light mt-5 rounded-3 shadow">
+    <div class = "container bg-light mt-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12 ">
                 <h1 class ="text-center">9/2/22</h1>
@@ -83,7 +163,7 @@
             </div>
         </div>
     </div>
-    <div class="container  bg-light mt-5 mb-5 rounded-3 shadow">
+    <div class="container  bg-light mt-5 mb-5 p-4 rounded-3 shadow">
         <div class="row">
             <div class="col-12">
                 <h1 class ="text-center">8/26/22</h1>

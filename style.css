@@ -1,3 +1,6 @@
 body {
    background-color: rgb(67, 161, 108);
 }
+code {
+   font-family: monospace;
+ }
